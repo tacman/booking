@@ -1,0 +1,10 @@
+framework:
+    messenger:
+        buses:
+            sync.bus:
+        transports:
+            sync: sync://
+
+        routing:
+            'Booking\Shared\Domain\Bus\Query\Query': sync
+            'Booking\Shared\Domain\Bus\Command\Command': sync

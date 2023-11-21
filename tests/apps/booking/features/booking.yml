@@ -1,0 +1,17 @@
+booking:
+  extensions:
+    FriendsOfBehat\SymfonyExtension:
+      kernel:
+        class: Booking\Apps\Kernel
+      bootstrap: apps/bootstrap.php
+    Behat\MinkExtension:
+      sessions:
+        symfony:
+          symfony: ~
+      base_url: ''
+
+  suites:
+    health_check:
+      paths: [ tests/apps/booking/features/health_check ]
+      contexts:
+        - Booking\Tests\Shared\Infrastructure\Behat\ApiContext

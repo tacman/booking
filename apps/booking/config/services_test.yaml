@@ -1,0 +1,10 @@
+framework:
+    test: true
+
+services:
+    _defaults:
+        autoconfigure: true
+        autowire: true
+
+    Booking\Tests\:
+        resource: '../../../tests/src'

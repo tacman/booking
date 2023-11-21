@@ -1,0 +1,4 @@
+health-check_get:
+  path: /health-check
+  controller: Booking\Apps\Controller\HealthChecker\HealthCheckerController
+  methods:  [GET]
