@@ -3,7 +3,7 @@
 /.env.local
 /.env.local.php
 /.env.*.local
-/apps/*/var/
+/app/*/var/
 /vendor/
 /build/
 .phpunit.result.cache

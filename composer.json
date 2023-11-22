@@ -9,6 +9,8 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
+        "doctrine/dbal": "^3.2",
+        "doctrine/doctrine-migrations-bundle": "^3.2",
         "ramsey/uuid": "^4.7",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
@@ -38,7 +40,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Booking\\Apps\\": "apps/booking/src/",
+            "Booking\\App\\": "app/",
             "Booking\\": ["src"]
         }
     },

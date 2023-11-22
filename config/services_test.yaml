@@ -7,4 +7,4 @@ services:
         autowire: true
 
     Booking\Tests\:
-        resource: '../../../tests/src'
+        resource: '../tests/src'

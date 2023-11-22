@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Booking\Apps\Controller\HealthChecker;
+namespace Booking\App\Controller\HealthChecker;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
