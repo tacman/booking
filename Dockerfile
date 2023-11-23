@@ -2,9 +2,9 @@ FROM php:8.1.0-fpm-alpine
 WORKDIR /app
 
 RUN apk --update upgrade \
-    && apk add --no-cache autoconf automake make gcc g++ icu-dev libpq-dev zsh git vim inotify-tools\
+    && apk add --no-cache autoconf automake make gcc g++ icu-dev libpq-dev zsh git vim linux-headers inotify-tools\
     && pecl install apcu \
-    && pecl install xdebug-3.1.1 \
+    && pecl install xdebug-3.2.2 \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install -j$(nproc) \
         opcache \

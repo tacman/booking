@@ -11,6 +11,8 @@
         "ext-json": "*",
         "doctrine/dbal": "^3.2",
         "doctrine/doctrine-migrations-bundle": "^3.2",
+        "guzzlehttp/guzzle": "^7.8",
+        "lambdish/phunctional": "^2.1",
         "ramsey/uuid": "^4.7",
         "symfony/console": "6.3.*",
         "symfony/dotenv": "6.3.*",
