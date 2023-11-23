@@ -3,7 +3,7 @@ booking:
     FriendsOfBehat\SymfonyExtension:
       kernel:
         class: Booking\App\Kernel
-      bootstrap: apps/bootstrap.php
+      bootstrap: tests/bootstrap.php
     Behat\MinkExtension:
       sessions:
         symfony:
@@ -15,3 +15,8 @@ booking:
       paths: [ tests/apps/booking/features/health_check ]
       contexts:
         - Booking\Tests\Shared\Infrastructure\Behat\ApiContext
+    active-booking:
+      paths: [ tests/apps/booking/features/active_booking ]
+      contexts:
+        - Booking\Tests\Shared\Infrastructure\Behat\ApiContext
+        - Booking\Tests\Shared\Infrastructure\Behat\ActiveBookingContext
