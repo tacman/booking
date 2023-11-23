@@ -41,8 +41,7 @@ class Date
     public function stringDate(): string
     {
         return $this->date
-            ->format(self::ISO8601_DATE_ONLY)
-        ;
+            ->format(self::ISO8601_DATE_ONLY);
     }
 
     public function modify(string $modifier): self
@@ -51,7 +50,6 @@ class Date
 
         return $this;
     }
-
 
     public function year(): int
     {

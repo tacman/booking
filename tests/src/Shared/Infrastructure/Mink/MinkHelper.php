@@ -32,7 +32,7 @@ final class MinkHelper
             'changeHistory' => true,
         ];
 
-        $optionalParams = \array_merge($defaultOptionalParams, $optionalParams);
+        $optionalParams = array_merge($defaultOptionalParams, $optionalParams);
 
         $crawler = $this->getClient()->request(
             $method,
@@ -57,7 +57,7 @@ final class MinkHelper
     public function getResponseHeaders(): array
     {
         return $this->normalizeHeaders(
-            \array_change_key_case($this->getSession()->getResponseHeaders(), CASE_LOWER)
+            array_change_key_case($this->getSession()->getResponseHeaders(), CASE_LOWER)
         );
     }
 
@@ -88,7 +88,7 @@ final class MinkHelper
 
     private function normalizeHeaders(array $headers): array
     {
-        return \array_map('implode', \array_filter($headers));
+        return array_map('implode', array_filter($headers));
     }
 
     private function resetRequestStuff(): void

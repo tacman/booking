@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Booking\Booking\ActiveBooking\Domain;
 
 use Booking\Shared\Domain\ValueObject\Date;
 
-final class BookingPeriod
+final class ActiveBookingPeriod
 {
     private int $numberOfNights;
 

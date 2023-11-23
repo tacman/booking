@@ -2,7 +2,7 @@ booking:
   extensions:
     FriendsOfBehat\SymfonyExtension:
       kernel:
-        class: Booking\Apps\Kernel
+        class: Booking\App\Kernel
       bootstrap: apps/bootstrap.php
     Behat\MinkExtension:
       sessions:

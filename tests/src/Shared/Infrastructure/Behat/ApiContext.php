@@ -13,13 +13,9 @@ use RuntimeException;
 
 final class ApiContext extends RawMinkContext
 {
-    private readonly
+    private MinkHelper $sessionHelper;
 
- public MinkHelper $sessionHelper;
-
-    private readonly
-
- public MinkSessionRequestHelper $request;
+    private MinkSessionRequestHelper $request;
 
     public function __construct(
         private readonly Session $minkSession
