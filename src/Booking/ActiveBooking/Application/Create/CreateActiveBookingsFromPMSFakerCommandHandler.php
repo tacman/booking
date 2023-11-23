@@ -33,7 +33,7 @@ class CreateActiveBookingsFromPMSFakerCommandHandler implements CommandHandler
             'created_at' => 'DESC',
         ]);
 
-        return $this->PMSFakerRepository->findAllSinceTimeStamp(
+        return $this->PMSFakerRepository->findAllSinceTimestamp(
             $lastActiveBooking?->createdAt
         );
     }

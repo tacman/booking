@@ -8,5 +8,5 @@ use Booking\Shared\Domain\ValueObject\Date;
 
 interface PMSFakerRepository
 {
-    public function findAllSinceTimeStamp(?Date $date): array;
+    public function findAllSinceTimestamp(?Date $date): array;
 }

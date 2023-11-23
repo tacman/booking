@@ -14,7 +14,6 @@ class CreateActiveBookingsFromPmsCommand extends Command
 {
     protected static $defaultName = 'create-active-bookings-from-pms';
 
-
     private CommandBus $bus;
 
     public function __construct(CommandBus $bus)

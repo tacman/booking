@@ -31,26 +31,13 @@ services:
         Booking\Shared\Domain\Bus\Command\Command:
             autowire: false
 
-#    query_handlers:
-#        namespace: 'Booking\'
-#        resource: '../src/*/Application/*/*QueryHandler.php'
-#        autoconfigure: false
-#        tags:
-#            - { name: messenger.message_handler, bus: sync.bus }
-#
-#    command_handlers:
-#        namespace: 'Booking\'
-#        resource: '../src/*/Application/*/*CommandHandler.php'
-#        autoconfigure: false
-#        tags:
-#            - { name: messenger.message_handler, bus: sync.bus }
-
-
     Booking\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
-
+    Booking\App\Controller\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }
     Booking\Shared\Domain\Bus\Query\QueryBus: '@Booking\Shared\Infrastructure\Bus\Query\SyncSymfonyQueryBus'
     Booking\Shared\Domain\Bus\Command\CommandBus: '@Booking\Shared\Infrastructure\Bus\Command\SyncSymfonyCommandBus'
     Booking\Shared\Domain\Bus\Event\EventBus: '@Booking\Shared\Infrastructure\Bus\Event\SyncSymfonyEventBus'

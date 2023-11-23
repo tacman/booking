@@ -1,0 +1,4 @@
+active-bookings_get:
+  path: /active-bookings/hotel/{hotel}/room/{room}
+  controller: Booking\App\Controller\ActiveBooking\GetActiveBookingByHotelAndRoomController
+  methods:  [GET]

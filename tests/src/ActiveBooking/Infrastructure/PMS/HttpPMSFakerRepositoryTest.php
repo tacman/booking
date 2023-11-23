@@ -45,7 +45,7 @@ class HttpPMSFakerRepositoryTest extends TestCase
             ->with('GET', sprintf(self::PMS_URI, $date->date()->getTimestamp()))
             ->willReturn($response);
 
-        $this->httpRepository->findAllSinceTimeStamp($date);
+        $this->httpRepository->findAllSinceTimestamp($date);
     }
 
     public function testShouldThrowExceptionWhenStatusCodeIsNot200(): void
@@ -62,7 +62,7 @@ class HttpPMSFakerRepositoryTest extends TestCase
             ->willReturn($response);
         $this->expectException(InternalErrorException::class);
 
-        $this->httpRepository->findAllSinceTimeStamp(null);
+        $this->httpRepository->findAllSinceTimestamp(null);
     }
 
     public function testShouldThrowExceptionWhenClientFails(): void
@@ -78,7 +78,7 @@ class HttpPMSFakerRepositoryTest extends TestCase
 
         $this->expectException(InternalErrorException::class);
 
-        $this->httpRepository->findAllSinceTimeStamp($date);
+        $this->httpRepository->findAllSinceTimestamp($date);
     }
 
     private function expectedResponse()

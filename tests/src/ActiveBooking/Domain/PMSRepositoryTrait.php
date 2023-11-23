@@ -16,7 +16,7 @@ trait PMSRepositoryTrait
     {
         $this->pmsRepository()
             ->expects(self::once())
-            ->method('findAllSinceTimeStamp')
+            ->method('findAllSinceTimestamp')
             ->with($date)
             ->willReturn($bookings);
     }

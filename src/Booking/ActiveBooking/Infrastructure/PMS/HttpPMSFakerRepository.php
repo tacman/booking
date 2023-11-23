@@ -25,7 +25,7 @@ class HttpPMSFakerRepository implements PMSFakerRepository
      * @throws \JsonException
      * @throws \Exception
      */
-    public function findAllSinceTimeStamp(?Date $date): array
+    public function findAllSinceTimestamp(?Date $date): array
     {
         try {
             $response = $this->client->request(

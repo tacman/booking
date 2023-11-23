@@ -79,24 +79,24 @@ final class DbalActiveBookingRepository extends DbalRepository implements Active
             new Locator($result['locator']),
             new Room($result['room']),
             new ActiveBookingPeriod(
-                    new Date($result['check_in']),
-                    new Date($result['check_out'])
-                ),
+                new Date($result['check_in']),
+                new Date($result['check_out'])
+            ),
             new ActiveBookingTotalPax($result['total_pax']),
             new ActiveBookingGuestCollection(
-                    ...map(
+                ...map(
                         static function (array $guest) {
-                        return new ActiveBookingGuest(
-                            $guest['name'],
-                            $guest['lastname'],
-                            new Birthdate(new Date($guest['birthdate'])),
-                            new Passport($guest['passport']),
-                            new CountryCode($guest['country'])
-                        );
-                    },
+                            return new ActiveBookingGuest(
+                                $guest['name'],
+                                $guest['lastname'],
+                                new Birthdate(new Date($guest['birthdate'])),
+                                new Passport($guest['passport']),
+                                new CountryCode($guest['country'])
+                            );
+                        },
                         json_decode($result['guests'], true, 512, JSON_THROW_ON_ERROR)
                     ),
-                ),
+            ),
             new Date($result['created_at'])
         );
     }
