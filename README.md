@@ -12,8 +12,15 @@ $ make init
 ### Check application health
 http://localhost:8080/health-check
 
-### Find active booking
-http://localhost:8080/active-bookings/hotel/{hotelId}/room/{roomNumber}
+### Get active booking
+http://localhost:8080/active-bookings/hotel/{hotel}/room/{room}
+
+Required params:
+
+- hotel -> Stay hotel ID
+- room -> Number of hotel room
+
+Method: GET
 
 ### Run tests - unit (phpUnit) and functional (Behat)
 ```bash
