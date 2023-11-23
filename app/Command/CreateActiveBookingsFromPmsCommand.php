@@ -30,6 +30,6 @@ class CreateActiveBookingsFromPmsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $this->bus->dispatch(new CreateActiveBookingsFromPMSFakerCommand());
-        return 1;
+        return self::SUCCESS;
     }
 }
