@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Booking\Booking\ActiveBooking\Domain;
 
+use function Lambdish\Phunctional\map;
+
 final class ActiveBookingGuestCollection
 {
     private array $bookingGuest;
@@ -15,6 +17,6 @@ final class ActiveBookingGuestCollection
 
     public function serialize(): array
     {
-        return array_map(static fn (ActiveBookingGuest $bookingGuest) => $bookingGuest->serialize(), $this->bookingGuest);
+        return map(static fn (ActiveBookingGuest $bookingGuest) => $bookingGuest->serialize(), $this->bookingGuest);
     }
 }

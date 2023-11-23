@@ -52,7 +52,7 @@ class CreateActiveBookingsFromPMSFakerCommandHandlerTest extends UnitTestCase
      */
     public function testShouldCreateActiveBookingsFromPMSFaker(): void
     {
-        $lastActiveBooking = ActiveBookingMother::random();
+        $lastActiveBooking = ActiveBookingMother::create()->build();
         $expectedActiveBooking = $this->validActiveBookingFromPmsBooking(
             $this->pmsBookings()[0]
         );
@@ -65,8 +65,8 @@ class CreateActiveBookingsFromPMSFakerCommandHandlerTest extends UnitTestCase
             $lastActiveBooking
         );
 
-        $this->shouldCallFindAllFromTimeStamp(
-            $lastActiveBooking->createdAt->date()->getTimestamp(),
+        $this->shouldCallFindAllSinceTimeStamp(
+            $lastActiveBooking->createdAt,
             $this->pmsBookings()
         );
 
@@ -90,8 +90,8 @@ class CreateActiveBookingsFromPMSFakerCommandHandlerTest extends UnitTestCase
             $this->pmsBookings()[0]
         );
 
-        $this->shouldCallFindAllFromTimeStamp(
-            0,
+        $this->shouldCallFindAllSinceTimeStamp(
+            null,
             $this->pmsBookings()
         );
 

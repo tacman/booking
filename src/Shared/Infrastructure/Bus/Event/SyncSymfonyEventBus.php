@@ -21,11 +21,5 @@ class SyncSymfonyEventBus implements EventBus
 
     public function dispatch(DomainEvent ...$events): void
     {
-        foreach ($events as $event) {
-            $this->eventBus->dispatch(
-                (new Envelope($event))
-                    ->with(new DispatchAfterCurrentBusStamp())
-            );
-        }
     }
 }

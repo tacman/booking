@@ -40,7 +40,13 @@ final class Version20231122101731_create_table_active_booking extends AbstractMi
         $table->addColumn('check_out', 'datetimetz_immutable', [
             'notnull' => true,
         ]);
+        $table->addColumn('total_pax', 'integer', [
+            'notnull' => true,
+        ]);
         $table->addColumn('guests', 'json', [
+            'notnull' => true,
+        ]);
+        $table->addColumn('created_at', 'datetimetz_immutable', [
             'notnull' => true,
         ]);
         $table->setPrimaryKey(['booking_id']);

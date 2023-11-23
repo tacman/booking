@@ -38,7 +38,7 @@ final class ActiveBookingGuest
         return [
             'name' => $this->name,
             'lastname' => $this->lastname,
-            'birhdate' => $this->birthdate->value->stringDate(),
+            'birthdate' => $this->birthdate->value->stringDate(),
             'passport' => $this->passport->value,
             'country' => $this->countryCode->value,
             'age' => $this->birthdate->age(),

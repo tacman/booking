@@ -6,13 +6,12 @@ namespace Booking\Booking\ActiveBooking\Application\Create;
 
 use Booking\Booking\ActiveBooking\Domain\ActiveBookingRepository;
 use Booking\Booking\ActiveBooking\Domain\PMSFaker\PMSFakerRepository;
+use Booking\Shared\Domain\Bus\Command\CommandHandler;
 use Booking\Shared\Domain\Bus\Event\EventBus;
-use Booking\Shared\Domain\Exception\InvalidValueException;
+use function Lambdish\Phunctional\each;
 
-class CreateActiveBookingsFromPMSFakerCommandHandler
+class CreateActiveBookingsFromPMSFakerCommandHandler implements CommandHandler
 {
-    private const DEFAULT_TIMESTAMP = 0;
-
     public function __construct(
         private readonly PMSFakerRepository $PMSFakerRepository,
         private readonly ActiveBookingRepository $activeBookingRepository,
@@ -20,18 +19,12 @@ class CreateActiveBookingsFromPMSFakerCommandHandler
     ) {
     }
 
-    /**
-     * @throws InvalidValueException
-     */
     public function __invoke(CreateActiveBookingsFromPMSFakerCommand $command): void
     {
-        $pmsBookings = $this->pmsBookings();
-
-        foreach ($pmsBookings as $pmsBooking) {
-            $activeBooking = (new FromPMSBookingToActiveBookingTransformer())->transform($pmsBooking);
-            $this->activeBookingRepository->save($activeBooking);
-            $this->eventBus->dispatch(...$activeBooking->pullDomainEvents());
-        }
+        each(
+            $this->createActiveBooking(),
+            $this->pmsBookings()
+        );
     }
 
     private function pmsBookings(): array
@@ -40,10 +33,17 @@ class CreateActiveBookingsFromPMSFakerCommandHandler
             'created_at' => 'DESC',
         ]);
 
-        return $this->PMSFakerRepository->findAllFromTimeStamp(
-            $lastActiveBooking !== null ?
-                $lastActiveBooking->createdAt->date()->getTimestamp() :
-                self::DEFAULT_TIMESTAMP
+        return $this->PMSFakerRepository->findAllSinceTimeStamp(
+            $lastActiveBooking?->createdAt
         );
+    }
+
+    private function createActiveBooking(): callable
+    {
+        return function ($pmsBooking) {
+            $activeBooking = (new FromPMSBookingToActiveBookingTransformer())->transform($pmsBooking);
+            $this->activeBookingRepository->save($activeBooking);
+            $this->eventBus->dispatch(...$activeBooking->pullDomainEvents());
+        };
     }
 }

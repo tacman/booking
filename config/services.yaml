@@ -16,20 +16,34 @@ services:
     Booking\:
         resource: '../src'
 
+    _instanceof:
+        Booking\Shared\Domain\Bus\Command\CommandHandler:
+            tags:
+                - { name: messenger.message_handler, bus: sync.bus }
 
-    query_handlers:
-        namespace: 'Booking\'
-        resource: '../src/*/Application/*/*QueryHandler.php'
-        autoconfigure: false
-        tags:
-            - { name: messenger.message_handler, bus: sync.bus }
+        Booking\Shared\Domain\Bus\Query\QueryHandler:
+            tags:
+                - { name: messenger.message_handler, bus: sync.bus }
 
-    command_handlers:
-        namespace: 'Booking\'
-        resource: '../src/*/Application/*/*CommandHandler.php'
-        autoconfigure: false
-        tags:
-            - { name: messenger.message_handler, bus: sync.bus }
+        Booking\Shared\Domain\Bus\Query\Query:
+            autowire: false
+
+        Booking\Shared\Domain\Bus\Command\Command:
+            autowire: false
+
+#    query_handlers:
+#        namespace: 'Booking\'
+#        resource: '../src/*/Application/*/*QueryHandler.php'
+#        autoconfigure: false
+#        tags:
+#            - { name: messenger.message_handler, bus: sync.bus }
+#
+#    command_handlers:
+#        namespace: 'Booking\'
+#        resource: '../src/*/Application/*/*CommandHandler.php'
+#        autoconfigure: false
+#        tags:
+#            - { name: messenger.message_handler, bus: sync.bus }
 
 
     Booking\Shared\Infrastructure\Symfony\AddJsonBodyToRequestListener:
@@ -40,3 +54,10 @@ services:
     Booking\Shared\Domain\Bus\Query\QueryBus: '@Booking\Shared\Infrastructure\Bus\Query\SyncSymfonyQueryBus'
     Booking\Shared\Domain\Bus\Command\CommandBus: '@Booking\Shared\Infrastructure\Bus\Command\SyncSymfonyCommandBus'
     Booking\Shared\Domain\Bus\Event\EventBus: '@Booking\Shared\Infrastructure\Bus\Event\SyncSymfonyEventBus'
+
+    pms.client:
+        class: 'GuzzleHttp\Client'
+
+    Booking\Booking\ActiveBooking\Infrastructure\PMS\HttpPMSFakerRepository:
+        arguments:
+            - '@pms.client'

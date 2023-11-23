@@ -6,6 +6,7 @@ namespace Booking\Shared\Domain\ValueObject;
 
 use Booking\Shared\Domain\Exception\InvalidValueException;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use Exception;
 
@@ -42,6 +43,12 @@ class Date
     {
         return $this->date
             ->format(self::ISO8601_DATE_ONLY);
+    }
+
+    public function stringDateTime(): string
+    {
+        return $this->date
+            ->format(DateTimeInterface::ATOM);
     }
 
     public function modify(string $modifier): self

@@ -10,6 +10,7 @@ use Booking\Shared\Domain\ValueObject\Date;
 use Booking\Shared\Domain\ValueObject\Locator;
 use Booking\Shared\Domain\ValueObject\Room;
 use Booking\Shared\Domain\ValueObject\Uuid;
+use function Lambdish\Phunctional\map;
 
 final class ActiveBooking extends AggregateRoot
 {
@@ -49,7 +50,7 @@ final class ActiveBooking extends AggregateRoot
             ),
             new ActiveBookingTotalPax($totalPax),
             new ActiveBookingGuestCollection(
-                ...array_map(
+                ...map(
                     static fn (array $guest) => ActiveBookingGuest::fromPrimitives($guest),
                     $guests
                 )
