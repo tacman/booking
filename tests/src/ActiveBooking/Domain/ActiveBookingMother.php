@@ -18,15 +18,20 @@ use Booking\Shared\Domain\ValueObject\Uuid;
 
 class ActiveBookingMother
 {
-    public const UUID = '00000000-0000-0000-0000-000000000000';
+    private Date $createdAt;
+
+    public static function create(): self
+    {
+        return new self();
+    }
 
     /**
      * @throws InvalidValueException
      */
-    public static function random(): ActiveBooking
+    public function build(): ActiveBooking
     {
         return new ActiveBooking(
-            new Uuid(self::UUID),
+            Uuid::random(),
             new Uuid('5ab1d247-19ea-4850-9242-2d3ffbbdb58d'),
             new Locator('randomLocator'),
             new Room('509'),
@@ -44,7 +49,13 @@ class ActiveBookingMother
                     new CountryCode('ES')
                 )
             ),
-            new Date()
+            $this->createdAt ?? new Date()
         );
+    }
+
+    public function withCreatedAt(Date $date): self
+    {
+        $this->createdAt = $date;
+        return $this;
     }
 }

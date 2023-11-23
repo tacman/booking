@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Booking\Booking\ActiveBooking\Domain\PMSFaker;
 
+use Booking\Shared\Domain\ValueObject\Date;
+
 interface PMSFakerRepository
 {
-    public function findAllFromTimeStamp(int $timestamp): array;
+    public function findAllSinceTimeStamp(?Date $date): array;
 }

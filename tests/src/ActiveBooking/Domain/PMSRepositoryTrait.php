@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace Booking\Tests\ActiveBooking\Domain;
 
 use Booking\Booking\ActiveBooking\Domain\PMSFaker\PMSFakerRepository;
+use Booking\Shared\Domain\ValueObject\Date;
 use PHPUnit\Framework\MockObject\MockObject;
 
 trait PMSRepositoryTrait
 {
     private mixed $pmsRepository;
 
-    public function shouldCallFindAllFromTimeStamp(int $timestamp, array $bookings = []): void
+    public function shouldCallFindAllSinceTimeStamp(?Date $date, array $bookings = []): void
     {
         $this->pmsRepository()
             ->expects(self::once())
-            ->method('findAllFromTimeStamp')
-            ->with($timestamp)
+            ->method('findAllSinceTimeStamp')
+            ->with($date)
             ->willReturn($bookings);
     }
 
