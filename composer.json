@@ -10,16 +10,17 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "doctrine/dbal": "^3.2",
+        "doctrine/doctrine-bundle": "^2.11",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "guzzlehttp/guzzle": "^7.8",
         "lambdish/phunctional": "^2.1",
         "ramsey/uuid": "^4.7",
-        "symfony/console": "6.3.*",
-        "symfony/dotenv": "6.3.*",
+        "symfony/console": "^6.4",
+        "symfony/dotenv": "^6.4",
         "symfony/flex": "^1.3.1",
-        "symfony/framework-bundle": "6.3.*",
-        "symfony/messenger": "6.3.*",
-        "symfony/yaml": "6.3.*"
+        "symfony/framework-bundle": "^6.4",
+        "symfony/messenger": "^6.4",
+        "symfony/yaml": "^6.4"
     },
     "require-dev": {
         "behat/behat": "^3.13",
@@ -42,7 +43,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Booking\\App\\": "app/",
+            "Booking\\App\\": "src/"
             "Booking\\": ["src"]
         }
     },
@@ -62,7 +63,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "6.3.*"
+            "require": "^6.4"
         }
     }
 }
